@@ -14,30 +14,24 @@ var queue = [0, 0, 0, 0, 0]
 // Declare an array of bools to store the selected number data
 var selected = [false, false, false, false, false]
 
-// Declare a variable to check to make sure input is an integer
-var number = 0
-
-// Declare a variable to count score
+// Declare variables to count and calculate score
 var score = 0
 var total = 0
 var temp = 0
 
 // Declare a variable to count up for loops
-var count = 0
-var count2 = 0
+var index = 0
 // Declare a variable to store data from rolled dice
 var roll = Int(arc4random_uniform(10))
 
-while count < 5 {
+for (index, value) in queue.enumerated() {
     
     // Declare a variable to temperarily store data from command line
-    print("Type a number to add to your queue - (Number \(count+1))")
+    print("Type a number to add to your queue - (Number \(index+1))")
     if let input = Int(readLine(strippingNewline: true)!) {
-        number = input
-        if number >= 2 && number <= 12 {
-            queue[count] = number
-            total = total + number
-            count += 1
+        if input >= 2 && input <= 12 {
+            queue[index] = input
+            total = total + input
         }
     }
     
@@ -45,39 +39,29 @@ while count < 5 {
     
 }
 
-count = 0
-
-while count <= 4 {
+for (index, value) in queue.enumerated() {
     roll = Int(arc4random_uniform(10) + 2)
     
-    while count2 <= 4 {
-    if roll == queue[count2] {
-        if selected[count2] == true {
-            selected[count2] = false
-        } else {
-        selected[count2] = true
-        }
-        count2 += 1
-    } else {
-        count2 += 1
+    for (index, value) in queue.enumerated() {
+        if roll == queue[index] {
+            if selected[index] == true {
+                selected[index] = false
+            } else {
+                selected[index] = true
+            }
         }
     }
-    count += 1
-    
-    count2 = 0
     
     print(roll)
     print(selected)
 }
 
-count = 0
 
-while count <= 4 {
-    if selected[count] == true {
-        temp = queue[count]
+for (index, value) in queue.enumerated() {
+    if selected[index] == true {
+        temp = queue[index]
         total = total - temp
     }
-    count += 1
 }
 
 print("Your score is \(total)")

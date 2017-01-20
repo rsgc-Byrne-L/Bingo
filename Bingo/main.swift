@@ -17,6 +17,11 @@ var selected = [false, false, false, false, false]
 // Declare a variable to check to make sure input is an integer
 var number = 0
 
+// Declare a variable to count score
+var score = 0
+var total = 0
+var temp = 0
+
 // Declare a variable to count up for loops
 var count = 0
 var count2 = 0
@@ -31,6 +36,7 @@ while count < 5 {
         number = input
         if number >= 2 && number <= 12 {
             queue[count] = number
+            total = total + number
             count += 1
         }
     }
@@ -44,7 +50,7 @@ count = 0
 while count <= 4 {
     roll = Int(arc4random_uniform(10) + 2)
     
-    while count2 < 4 {
+    while count2 <= 4 {
     if roll == queue[count2] {
         if selected[count2] == true {
             selected[count2] = false
@@ -63,3 +69,15 @@ while count <= 4 {
     print(roll)
     print(selected)
 }
+
+count = 0
+
+while count <= 4 {
+    if selected[count] == true {
+        temp = queue[count]
+        total = total - temp
+    }
+    count += 1
+}
+
+print("Your score is \(total)")

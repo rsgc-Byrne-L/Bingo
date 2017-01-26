@@ -18,26 +18,50 @@ var selected = [false, false, false, false, false]
 var score = 0
 var total = 0
 var temp = 0
+var choice = 0
 
 // Declare a variable to count up for loops
 var index = 0
 // Declare a variable to store data from rolled dice
 var roll = Int(arc4random_uniform(10))
 
-for (index, value) in queue.enumerated() {
-    
-    // Declare a variable to temperarily store data from command line
-    print("Type a number to add to your queue - (Number \(index+1))")
-    if let input = Int(readLine(strippingNewline: true)!) {
-        if input >= 2 && input <= 12 {
-            queue[index] = input
-            total = total + input
+// Section to allow user to choose to 'play' or 'test'
+print("Would you like to play or test number combinations? (Type 'play' or 'test')")
+while temp == 0 {
+    if let inputChoice = String(readLine(strippingNewline: true)!) {
+        if inputChoice == "play" {
+            temp = 1
+            choice = 0
+            
+        } else if inputChoice == "test" {
+            temp = 1
+            choice = 1
+            
+        } else {
+            print("Please input either 'play' or 'test'")
         }
     }
-    
-    print(queue)
-    
 }
+
+// To play
+if choice == 0 {
+temp = 0
+
+// Section to take user input and put it into array
+while temp <= 4 {
+    
+    // Declare a variable to temperarily store data from command line
+    print("Type a number to add to your queue - (Number \(temp+1))")
+    if let input = Int(readLine(strippingNewline: true)!) {
+        if input >= 2 && input <= 12 {
+            queue[temp] = input
+            total = total + input
+            temp += 1
+        }
+    }
+}
+
+temp = 0
 
 for (index, value) in queue.enumerated() {
     roll = Int(arc4random_uniform(10) + 2)
@@ -63,5 +87,23 @@ for (index, value) in queue.enumerated() {
         total = total - temp
     }
 }
+    
+temp = 0
 
 print("Your score is \(total)")
+// To test
+} else if choice == 1 {
+    // Section to take user input and put it into array
+    while temp <= 4 {
+        
+        // Declare a variable to temperarily store data from command line
+        print("Type a number to add to your queue for testing - (Number \(temp+1))")
+        if let input = Int(readLine(strippingNewline: true)!) {
+            if input >= 2 && input <= 12 {
+                queue[temp] = input
+                total = total + input
+                temp += 1
+            }
+        }
+    }
+}

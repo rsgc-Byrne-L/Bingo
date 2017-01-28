@@ -22,6 +22,8 @@ var total = 0
 var temp = 0
 var hold = 0
 var choice = 0
+var number = 0
+var number2 = 0
 
 // Declare a variable to count up for loops
 var index = 0
@@ -98,6 +100,7 @@ if choice == 0 {
         print("How many times would you like to test? (1 - 1,000,000)")
         if let testNumber = Int(readLine(strippingNewline: true)!) {
             if testNumber >= 1 && testNumber <= 1000000 {
+                number = testNumber
                 temp = 1
             }
         }
@@ -113,36 +116,45 @@ if choice == 0 {
             if inputTest >= 2 && inputTest <= 12 {
                 queue[temp] = inputTest
                 total = total + inputTest
+                number2 = total
                 temp += 1
             }
         }
     }
-    for (index, value) in queue.enumerated() {
-        roll = Int(arc4random_uniform(10) + 2)
+    temp = 0
+    
+    while temp < number {
         
         for (index, value) in queue.enumerated() {
-            if roll == queue[index] {
-                if selected[index] == true {
-                    selected[index] = false
-                } else {
-                    selected[index] = true
+            roll = Int(arc4random_uniform(10) + 2)
+            print("Roll: \(roll)")
+            
+            for (index, value) in queue.enumerated() {
+                if roll == queue[index] {
+                    if selected[index] == true {
+                        selected[index] = false
+                    } else {
+                        selected[index] = true
+                    }
                 }
             }
         }
-    }
-    
-    for (index, value) in queue.enumerated() {
-        if selected[index] == true {
-            hold = queue[index]
-            total = total - hold
+        
+        for (index, value) in queue.enumerated() {
+            if selected[index] == true {
+                hold = queue[index]
+                total = total - hold
+            }
         }
+        
+        
+        print("Total: \(total)")
+        print("Scores: \(scores)")
+        scores.append(total)
+        temp += 1
+        total = number2
     }
     
-    // TO DO: Add all total numbers after each test to array, then add them all up and divinde to find average. Display average as score after all the rounds
-    scores.append(total)
     
-    print(total)
-    
-    print(total)
     
 }

@@ -8,6 +8,8 @@
 
 import Foundation
 
+var Game = Response()
+
 // Declare an array of integers to store the user's queue of numbers
 var queue = [0, 0, 0, 0, 0]
 
@@ -30,23 +32,7 @@ var index = 0
 // Declare a variable to store data from rolled dice
 var roll = Int(arc4random_uniform(10))
 
-// Section to allow user to choose to 'play' or 'test'
-print("Would you like to play or test number combinations? (Type 'play' or 'test')")
-while temp == 0 {
-    if let inputChoice = String(readLine(strippingNewline: true)!) {
-        if inputChoice == "play" {
-            temp = 1
-            choice = 0
-            
-        } else if inputChoice == "test" {
-            temp = 1
-            choice = 1
-            
-        } else {
-            print("Please input either 'play' or 'test'")
-        }
-    }
-}
+choice = Game.startGame()
 
 // To play
 if choice == 0 {

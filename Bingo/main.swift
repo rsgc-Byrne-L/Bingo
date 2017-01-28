@@ -26,6 +26,7 @@ var hold = 0
 var choice = 0
 var number = 0
 var number2 = 0
+var final : Double = 0
 
 // Declare a variable to count up for loops
 var index = 0
@@ -36,23 +37,11 @@ choice = Game.startGame()
 
 // To play
 if choice == 0 {
-    temp = 0
     
-    // Section to take user input and put it into array
-    while temp <= 4 {
-        
-        // Declare a variable to temperarily store data from command line
-        print("Type a number to add to your queue - (Number \(temp+1))")
-        if let input = Int(readLine(strippingNewline: true)!) {
-            if input >= 2 && input <= 12 {
-                queue[temp] = input
-                total = total + input
-                temp += 1
-            }
-        }
-    }
-    
-    temp = 0
+    // Call the "userInput" fuction in the "Response" class
+    queue = Game.getInput()
+    // Call the "getTotal" fuction in the "Response" class
+    total = Game.getTotal(queue: queue)
     
     for (index, value) in queue.enumerated() {
         roll = Int(arc4random_uniform(10) + 2)
@@ -92,28 +81,16 @@ if choice == 0 {
         }
     }
     
-    temp = 0
-    // Section to take user input and put it into array
-    while temp <= 4 {
-        
-        // Declare a variable to temperarily store data from command line
-        print("Type a number to add to your queue for testing - (Number \(temp+1))")
-        if let inputTest = Int(readLine(strippingNewline: true)!) {
-            if inputTest >= 2 && inputTest <= 12 {
-                queue[temp] = inputTest
-                total = total + inputTest
-                number2 = total
-                temp += 1
-            }
-        }
-    }
-    temp = 0
+    // Call the "userInput" fuction in the "Response" class
+    queue = Game.getInput()
+    // Call the "getTotal" fuction in the "Response" class
+    total = Game.getTotal(queue: queue)
+    number2 = total
     
-    while temp < number {
+    while temp < number+1 {
         
         for (index, value) in queue.enumerated() {
             roll = Int(arc4random_uniform(10) + 2)
-            print("Roll: \(roll)")
             
             for (index, value) in queue.enumerated() {
                 if roll == queue[index] {
@@ -135,12 +112,13 @@ if choice == 0 {
         
         
         print("Total: \(total)")
-        print("Scores: \(scores)")
         scores.append(total)
+        print("Scores: \(scores)")
         temp += 1
         total = number2
     }
     
-    
+    final = Game.getAverage(queue: scores, times: number)
+    print("Your average score after \(number) tests is \(final)!")
     
 }

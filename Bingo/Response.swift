@@ -68,11 +68,6 @@ class Response {
         var temp = 0
         var total : Double = 0
         
-        print("temp = \(temp)")
-        print("totoal = \(total)")
-        print("times = \(times)")
-        print("queue = \(queue)")
-        
         while temp <= times-1 {
             total = total + Double(queue[temp])
             temp += 1
@@ -113,5 +108,20 @@ class Response {
             }
         }
         return total
+    }
+    
+    func startGame2() -> Int {
+        var temp = 0
+        
+        while temp == 0 {
+            print("How many times would you like to test? (1 - 1,000,000)")
+            if let testNumber = Int(readLine(strippingNewline: true)!) {
+                if testNumber >= 1 && testNumber <= 1000000 {
+                    number = testNumber
+                    temp = 1
+                }
+            }
+        }
+        return number
     }
 }

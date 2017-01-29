@@ -43,29 +43,9 @@ if choice == 0 {
     // Call the "getTotal" fuction in the "Response" class
     total = Game.getTotal(queue: queue)
     
-    for (index, value) in queue.enumerated() {
-        roll = Int(arc4random_uniform(10) + 2)
-        
-        for (index, value) in queue.enumerated() {
-            if roll == queue[index] {
-                if selected[index] == true {
-                    selected[index] = false
-                } else {
-                    selected[index] = true
-                }
-            }
-        }
-    }
+    selected = Game.select(queue: queue)
     
-    
-    for (index, value) in queue.enumerated() {
-        if selected[index] == true {
-            temp = queue[index]
-            total = total - temp
-        }
-    }
-    
-    temp = 0
+    total = Game.update(queue: queue, selected: selected, max: total)
     
     print("Your score is \(total)")
     // To test
@@ -109,11 +89,8 @@ if choice == 0 {
                 total = total - hold
             }
         }
-        
-        
-        print("Total: \(total)")
+
         scores.append(total)
-        print("Scores: \(scores)")
         temp += 1
         total = number2
     }

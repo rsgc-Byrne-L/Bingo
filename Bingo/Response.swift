@@ -82,4 +82,36 @@ class Response {
         
         return total
     }
+    
+    func select(queue: [Int]) -> [Bool] {
+        var selected = [false, false, false, false, false]
+        
+        for (index, value) in queue.enumerated() {
+            roll = Int(arc4random_uniform(10) + 2)
+            
+            for (index, value) in queue.enumerated() {
+                if roll == queue[index] {
+                    if selected[index] == true {
+                        selected[index] = false
+                    } else {
+                        selected[index] = true
+                    }
+                }
+            }
+        }
+        return selected
+    }
+    
+    func update(queue: [Int], selected: [Bool], max: Int) -> Int {
+        var temp = 0
+        var total = max
+        
+        for (index, value) in queue.enumerated() {
+            if selected[index] == true {
+                temp = queue[index]
+                total = total - temp
+            }
+        }
+        return total
+    }
 }

@@ -19,6 +19,7 @@ var selected = [false, false, false, false, false]
 // Declare an array of Integers to store the various scores in "test mode"
 var scores = [Int]()
 
+// MARK: Variables
 // Declare variables to count and calculate score
 var total = 0
 var temp = 0
@@ -36,6 +37,8 @@ var roll = Int(arc4random_uniform(10))
 choice = Game.startGame()
 
 // To play
+
+// MARK: Mode 1
 if choice == 0 {
     
     // Call the "userInput" fuction in the "Response" class
@@ -52,6 +55,8 @@ if choice == 0 {
     print("Your score is \(total)")
     
     // To test
+    
+// MARK: Mode 2
 } else if choice == 1 {
     
     // Call the "startGame2" fuction in the "Response" class
